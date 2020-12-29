@@ -13,12 +13,14 @@ class CreateArticleTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('article_tags', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('article_id');
-            $table->integer('tag_id');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('article_tags')){
+            Schema::create('article_tags', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('article_id');
+                $table->integer('tag_id');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
