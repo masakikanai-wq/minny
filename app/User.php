@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Article;
+use App\Models\Like;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,4 +38,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // articleテーブルとは1対多の関係であることを定義している
+    // hasMany 1対多だよ だよ～
+    public function articles() {
+       return $this -> hasMany(Article::class);
+    }
+
+    public function likes() {
+        return $this -> hasMany(Like::class,'user_id');
+    }
 }

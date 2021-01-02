@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Tag;
-
+use App\User;
 use Illuminate\Http\Request;
 
 
@@ -19,9 +19,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
-        $article = Article::all();
+        // articleとuserテーブルで紐づいているidを取得して変数に保存している
+        //紐づけ作業は各Modelで実装済み
+        $article = Article::with('user')->orderBy('id', 'desc')->get();
         return view('contents.article',compact('article'));
+
     }
 
     /**
