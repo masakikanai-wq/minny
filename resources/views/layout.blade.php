@@ -2,7 +2,13 @@
 <html lang="ja">
 
 <head>
-    @yield('head')
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/article.css') }}">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/post.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <title>@yield('title')</title>
 </head>
 
 <body>
@@ -20,6 +26,7 @@
             </div>
         </div>
     </main>
+    <script src="{{ asset('js/article.js') }}"></script>
 </body>
 
 </html>

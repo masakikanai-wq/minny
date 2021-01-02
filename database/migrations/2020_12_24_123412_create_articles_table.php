@@ -16,11 +16,14 @@ class CreateArticlesTable extends Migration
     {
         if (!Schema::hasTable('articles')){
             Schema::create('articles', function (Blueprint $table) {
+                
                 $table->bigIncrements('id');
                 $table->integer('user_id');
                 $table->string('title');
                 $table->string('url');
+                $table->string('tag');
                 $table->timestamps();
+
             });
         }
     }

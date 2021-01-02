@@ -29,9 +29,10 @@ class PostController extends Controller
         $article = new Article();
 
         $article -> create([
-            'user_id' => request('user_id'),
+            'user_id' => 1,
             'title' =>  request('title'),
             'url' => request('url'),
+            'tag' => request('tag'),
         ]);
 
         return redirect(route('article_index'));
