@@ -12,10 +12,10 @@
 </head>
 
 <body>
-    <header>
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         @component('components.header')
         @endcomponent
-    </header>
+    </nav>
     <main>
         <div class="container">
             <!-- 画面の大きさなどは共通なのでcontainer -->
@@ -24,6 +24,9 @@
                 <!-- contentsフォルダにそれぞれ書いたコードを管理する -->
                 @yield('contents')
             </div>
+        </div>
+        <div class="container">
+            @yield('content')
         </div>
     </main>
     <script src="{{ asset('js/article.js') }}"></script>
