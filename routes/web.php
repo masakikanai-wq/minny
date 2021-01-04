@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,9 @@ Route::get('/', 'ArticleController@index')->name('article_index');
 
 Route::get('contents.post','PostController@index')->name('post_index');
 Route::post('contents.post','PostController@create')->name('post_create');
+Route::get('users_menyu','UserController@index')->name('user_index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/{id}','ArticleController@create_like')->name('create_like');

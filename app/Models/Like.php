@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Like extends Model
 {
     //
-    protected $fillable = ['aticle_id', 'user_id'];
+    protected $fillable = ['article_id', 'user_id'];
 
     public function article() {
         return $this->belongsTo(Article::class);
