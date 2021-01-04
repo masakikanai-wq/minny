@@ -4,7 +4,6 @@
 
 @section('contents')
 <div class="article_wrapper">
-
     <!-- foreach分で記事を表示させる繰り返し処理 -->
     @if(!empty($article))
     @foreach($article as $values)
@@ -19,14 +18,23 @@
                         <a href="">#{{$values['tag']}}</a>
                     </li>
                 </ul>
-                <i class="fas fa-heart"  id="like"></i>
-                <p class="like_count">0</p>
+                <!-- like部分はjavascriptでpost通信できないか挑戦中 -->
+                @if(Auth::id() === $values['user_id'])
+                    <form action="" method="POST" name="{{$values['id']}}">
+                        <a href="javascript:{{$values['id']}}.submit()">
+                            <i class="fas fa-heart fa-2x pink" id="like"></i>
+                        </a>
+                    </form>
+                @else
+                    <form action="" method="POST" name="{{$values['id']}}">
+                        <a href=""><i class="fas fa-heart fa-2x normal" id="like"></i></a>
+                    </form>
+                @endif
             </div>
             <p class="name">投稿者：{{$values['user']['name']}}</p>
         </div>
     </div>
     @endforeach
     @endif
-
 </div>
 @endsection

@@ -2,3 +2,8 @@
     box-sizing: border-box;
     font-size: 1rem;
 }
+
+.container {
+    width: 1024px;
+    margin: 0 auto;
+}

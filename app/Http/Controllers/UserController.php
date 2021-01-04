@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Models\Tag;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class PostController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,8 @@ class PostController extends Controller
     public function index()
     {
         //
-        return view('contents.post');
+        $article = Article::with('user')->where('user_id', Auth::id())->orderBy('id', 'desc')->get();
+        return view('contents.users_menyu', compact('article'));
     }
 
     /**
@@ -27,16 +29,6 @@ class PostController extends Controller
     public function create()
     {
         //
-        $article = new Article();
-
-        $article -> create([
-            'user_id' => Auth::id(),
-            'title' =>  request('title'),
-            'url' => request('url'),
-            'tag' => request('tag'),
-        ]);
-
-        return redirect(route('article_index'));
     }
 
     /**

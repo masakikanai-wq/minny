@@ -1,31 +1,52 @@
 <!-- 削除予定 -->
-<div class="header_wrapper">
-    <div class="header_contaier">
-        <div class="header_title">
-            <p>Minny</p>
-        </div>
-        <div class="header_nav">
-            <!-- ここに Authで作成したログイン機能を追加予定 -->
-            <a href="{{route('post_create')}}">投稿</a>
-            <a href="{{route('login')}}">ログイン</a>
-        </div>
-    </div>
-</div>
+
 <!-- ここまで -->
 
 <!-- ヘッダー -->
 <div class="container">
-    <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Minny') }}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="header_nav">
+        <div class="logo-name">
+            <p><a class="minny" href="{{ url('/') }}">{{ config('app.name', 'Minny') }}</a></p>
+        </div>
+        <div class="nav_content">
+            <ul class="nav-items">
+                @guest
+                @if (Route::has('register'))
+                <li class="nav_item">
+                    <a class="nav_link" href="{{ route('register') }}">サインアップ</a>
+                </li>
+                <li class="nav_item">
+                    <a class="nav_link" href="{{ route('login') }}">ログイン</a>
+                </li>
+                @endif
+                @else
+                <!-- 各ルートでheaderの表示を変えている -->
+                @if(Route::is('article_index'))
+                    <li class="nav_item">
+                        <a href="{{route('post_index')}}" class="nav_link">新規投稿</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{{route('user_index')}}" class="nav_link">マイページ</a>
+                    </li>
+                @elseif(\Route::is('post_index'))
+                    <li class="nav_item">
+                        <a href="{{route('user_index')}}" class="nav_link">マイページ</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{{route('article_index')}}" class="nav_link">記事一覧</a>
+                    </li>
+                @else
+                    <li class="nav_item">
+                        <a href="{{route('post_index')}}" class="nav_link">新規投稿</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{{route('article_index')}}" class="nav_link">記事一覧</a>
+                    </li>
+                @endif
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="" href="{{ route('post_create') }}">投稿</a>
-                <a class="" href="{{ route('login') }}">ログイン</a>
-            </li>
-        </ul>
-    </div>
+                @endguest
+
+            </ul>
+        </div>
+    </nav>
 </div>
