@@ -1,0 +1,32 @@
+
+.show_container {
+    width: 960px;
+    margin: 50px auto ;
+}
+
+.show_title a {
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.show_title a:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+.comment_btn input{
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    padding: 5px;
+    color: #fff;
+    background-color: black;
+    cursor : pointer;
+}
+
+.comment_list_container {
+    width: 960px;
+    margin: 50px auto ;
+}
