@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/article.css') }}">
     <link rel="stylesheet" href="{{ asset('css/post.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/show.css') }}">    
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <title>@yield('title')</title>
 </head>

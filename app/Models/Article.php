@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\User;
+use App\Comment;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
@@ -19,6 +20,10 @@ class Article extends Model
 
     public function likes() {
         return $this->hasMany(Like::class, 'article_id');
+    }
+
+    public function comments() {
+        return $this -> hasMany(Comment::class);
     }
 
 }

@@ -3,29 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use App\Models\Tag;
 use App\Models\Comment;
 use App\User;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-
-
-
-class ArticleController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $id, Article $article)
     {
-        // articleとuserテーブルで紐づいているidを取得して変数に保存している
-        //紐づけ作業は各Modelで実装済み
-        $article = Article::with('user')->orderBy('id', 'desc')->get();
-        return view('contents.article',compact('article'));
-
+        $article = Article::find($id);
+        return view('contents.comment',compact('article'));
     }
 
     /**
@@ -33,9 +26,19 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $comment = new Comment;
+
+        $comment->body = $request->body;
+        $comment->user_id = Auth::id();
+        $comment->article_id = $request->article_id;
+
+        $comment->save();
+
+        $article = Article::find($request->article_id);
+        $comments = Comment::all();
+        return view('contents.show', compact('article', 'comments'));
     }
 
     /**
@@ -46,7 +49,8 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
     }
 
     /**
@@ -55,11 +59,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id, Article $article, Comment $comments)
+    public function show()
     {
-        $article = Article::find($id);
-        $comments = Comment::all();
-        return view('contents.show',compact('article', 'comments'));
+
     }
 
     /**
