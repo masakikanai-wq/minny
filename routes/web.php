@@ -20,11 +20,17 @@ Route::get('/', 'ArticleController@index')->name('article_index');
 
 Route::get('contents.post','PostController@index')->name('post_index');
 Route::post('contents.post','PostController@create')->name('post_create');
+
 Route::get('users_menyu','UserController@index')->name('user_index');
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/{id}/contents.comment', 'CommentController@index')->name('comment_index');
     Route::post('/{id}/contents.comment', 'CommentController@create')->name('comment_create');
 });
+Route::delete('users_menyu', 'UserController@destroy')->name('user_destroy');
+
+Route::get('/edit/{id}/', 'EditController@index')->name('edit_index');
+Route::post('/edit/{id}', 'EditController@edit')->name('edit_update');
+
 
 Auth::routes();
 

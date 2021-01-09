@@ -19,7 +19,7 @@
                     </li>
                 </ul>
                 <!-- like部分はjavascriptでpost通信できないか挑戦中 -->
-                @if(Auth::id() === $values['user_id'])
+                <!-- @if(Auth::id() === $values['user_id'])
                     <form action="" method="POST" name="{{$values['id']}}">
                         <a href="javascript:{{$values['id']}}.submit()">
                             <i class="fas fa-heart fa-2x pink" id="like"></i>
@@ -29,7 +29,7 @@
                     <form action="" method="POST" name="{{$values['id']}}">
                         <a href=""><i class="fas fa-heart fa-2x normal" id="like"></i></a>
                     </form>
-                @endif
+                @endif -->
             </div>
             <p class="name">投稿者：{{$values['user']['name']}}</p>
         </div>

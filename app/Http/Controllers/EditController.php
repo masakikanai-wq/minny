@@ -1,24 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Article;
-use App\Models\Tag;
-use App\User;
-use Illuminate\Support\Facades\Auth;
-
-class UserController extends Controller
+class EditController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         //
-        $article = Article::with('user')->where('user_id', Auth::id())->orderBy('id', 'desc')->get();
-        return view('contents.users_menyu', compact('article'));
+        $article = Article::where('id',$id)->get();
+        return view('contents.edit',compact('article'));
     }
 
     /**
@@ -29,6 +26,7 @@ class UserController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -62,6 +60,12 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $article = Article::find($id);
+        $article -> title = request('title');
+        $article -> url = request('url');
+        $article -> tag = request('tag');
+        $article -> save();
+        return redirect(route('user_index'));
     }
 
     /**
@@ -82,13 +86,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
         //
-        $article = Article::where('id',request('article_id'));
-
-        $article->delete();
-
-        return redirect(route('user_index'));
     }
 }
