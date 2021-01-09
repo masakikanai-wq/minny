@@ -19,25 +19,32 @@
             -->
         </div>
         <p class="name">投稿者：{{$article['user']['name']}}</p>
-
         <div class="comment_btn">
-            <a href="{{ $article['id'] }}/contents.comment ">
+            <a href="{{ action('ArticleController@show', $article->id) }}/contents.comment ">
                 <input type="submit" value="この記事にコメントする">
             </a>
         </div>
     </div>
 
-    <div class="comment_list_container">
-        <p>コメント一覧</p>
-        <hr>
-        @foreach($comments as $comment)
-        @if($article['id'] === $comment['article_id'])
-        <div class="article_container">
+    <p>コメント一覧</p>
+    <hr>
+    @foreach($comments as $comment)
+    @if($article['id'] === $comment['article_id'])
+    <div class="comments_container">
+        <div class="comment_container">
             <p class="title">
                 {{ $comment['body'] }}
             </p>
             <p class="name">投稿者：{{$comment['user']['name']}}</p>
-
+            @if(Auth::id() === $comment['user_id'])
+            <form action="{{ route('comment_destroy', $comment->id) }}" method='post'>
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <input type="hidden" name="article_id" value="{{ $article->id }}">
+                <input type="submit" value="削除" class="delete_btn" onclick="return confirm('削除しますか？');">
+            </form>
+            @endif
+        </div>
     </div>
     @endif
     @endforeach

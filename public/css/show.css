@@ -26,7 +26,12 @@
     cursor : pointer;
 }
 
-.comment_list_container {
+.comments_container {
     width: 960px;
     margin: 50px auto ;
+    border: solid 3px grey;
+}
+
+.comment_container {
+    margin: 0 10px 0 10px;
 }
