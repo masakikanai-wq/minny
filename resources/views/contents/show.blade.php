@@ -50,7 +50,4 @@
     @endforeach
 
 
-
-
-
 @endsection

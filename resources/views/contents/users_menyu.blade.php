@@ -29,7 +29,7 @@
         <div class="articles_container">
             <div class="article_container">
                 <p class="title">
-                    <a href="">{{$values['title']}}</a>
+                    <a href="{{ action('ArticleController@show', $values->id) }}">{{$values['title']}}</a>
                 </p>
                 <div class="tag_like_container">
                     <ul class="tags">
